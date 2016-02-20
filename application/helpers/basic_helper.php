@@ -157,6 +157,7 @@ if (!function_exists('input_text_group')) {
 		if ($help) {
 			$query .= "<span class='help-block'><small>".$help.".</small></span>";
 		}
+		$query .= "<div class='text-danger'>".form_error($name)."</div>";
 		$query .= "</div>";
 		$query .= "</div>";
 		return $query;
@@ -178,6 +179,7 @@ if (!function_exists('input_textarea_group')) {
 		$query .= "<label for='".$name."' class='col-lg-2 col-sm-2 control-label'>".$label."</label>";
 		$query .= "<div class='col-sm-6'>";
 		$query .= "<textarea name='".$name."' placeholder='".$placeholder."' class='form-control' rows='6' data-validation='".$required."' data-validation-error-msg='Anda belum mengisi field ini' '".$attribute."'>".$value."</textarea>";
+		$query .= "<div class='text-danger'>".form_error($name)."</div>";
 		$query .= "</div>";
 		$query .= "</div>";
 		return $query;
@@ -199,6 +201,7 @@ if (!function_exists('input_email_group')) {
 		$query .= "<label for='".$name."' class='col-lg-2 col-sm-2 control-label'>".$label."</label>";
 		$query .= "<div class='col-sm-6'>";
 		$query .= "<input type='text' name='".$name."' id=".$name." class='form-control' placeholder='".$placeholder."' value='".$value."' data-validation='".$required." email' data-validation-error-msg-required='Anda belum mengisi field ini' data-validation-error-msg-email='Anda belum memberikan alamat email yang benar' '".$attribute."'>";
+		$query .= "<div class='text-danger'>".form_error($name)."</div>";
 		$query .= "</div>";
 		$query .= "</div>";
 		return $query;
@@ -220,6 +223,7 @@ if (!function_exists('input_icon_group')) {
 		$query .= "<label for='".$name."' class='col-lg-2 col-sm-2 control-label'>".$label."</label>";
 		$query .= "<div class='col-sm-6'>";
 		$query .= "<input type='text' name='".$name."' id=".$name." class='form-control icp icp-auto' placeholder='".$placeholder."' value='".$value."' data-validation='".$required."' data-validation-error-msg='Anda belum mengisi field ini' '".$attribute."'>";
+		$query .= "<div class='text-danger'>".form_error($name)."</div>";
 		$query .= "</div>";
 		$query .= "</div>";
 		return $query;
@@ -276,6 +280,7 @@ if ( ! function_exists('select_join_group'))
 		}
 
 		$select .= "</select>";
+		$select .= "<div class='text-danger'>".form_error($field)."</div>";
 		$select .= "</div>";
 		$select .= "</div>";
 		return $select;

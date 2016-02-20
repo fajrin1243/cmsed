@@ -18,17 +18,30 @@ class User extends MY_Controller {
 		$this->load->view('main',$data,FALSE);
 	}
 
-	public function save()
+	public function save($id="")
 	{
 		$post = $this->input->post();
-		if ($post['idMember']) {
-			$this->model->update_data('member',$post,array('idMember'=>$post['idMember']));
+		$data['getMember'] = $this->model->get_where('user',array('idUser'=>$id));
+		$this->form_validation->set_rules('usernameMember', 'Username User', 'required');
+		$this->form_validation->set_rules('nameUser', 'Nama User', 'required');
+		$this->form_validation->set_rules('emailUser', 'Email User', 'required');
+		$this->form_validation->set_rules('namaRole', 'Role User', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$data['content'] = 'module_add';
+			$this->load->view('main',$data,FALSE);
 		}
 		else{
-			$post['createdDate'] = date('Y-m-d H:i:s');
-			$this->model->insert_data('member',$post);
+			if ($post['idMember']) {
+				$this->model->update_data('member',$post,array('idMember'=>$post['idMember']));
+			}
+			else{
+				$post['createdDate'] = date('Y-m-d H:i:s');
+				$this->model->insert_data('member',$post);
+			}
+			redirect('pengaturan/user');
 		}
-		redirect('pengaturan/user');
 	}
 }
 
