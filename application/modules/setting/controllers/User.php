@@ -22,26 +22,33 @@ class User extends MY_Controller {
 	{
 		$post = $this->input->post();
 		$data['getMember'] = $this->model->get_where('user',array('idUser'=>$id));
-		$this->form_validation->set_rules('usernameMember', 'Username User', 'required');
+		$this->form_validation->set_rules('usernameUser', 'Username User', 'required');
 		$this->form_validation->set_rules('nameUser', 'Nama User', 'required');
 		$this->form_validation->set_rules('emailUser', 'Email User', 'required');
-		$this->form_validation->set_rules('namaRole', 'Role User', 'required');
+		$this->form_validation->set_rules('roleUser', 'Role User', 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['content'] = 'module_add';
+			$data['content'] = 'member_add';
 			$this->load->view('main',$data,FALSE);
 		}
 		else{
-			if ($post['idMember']) {
-				$this->model->update_data('member',$post,array('idMember'=>$post['idMember']));
+			if ($post['idUser']) {
+				$this->model->update_data('user',$post,array('idMember'=>$post['idMember']));
 			}
 			else{
-				$post['createdDate'] = date('Y-m-d H:i:s');
-				$this->model->insert_data('member',$post);
+				$post['created_date'] = date('Y-m-d H:i:s');
+				$post['created_by'] = $this->session->userdata('usernameUser');
+				$this->model->insert_data('user',$post);
 			}
-			redirect('pengaturan/user');
+			redirect('setting/user');
 		}
+	}
+
+	public function delete($id)
+	{
+		// $this->model->delete_data('user',array('idUser'=>$id));
+		echo $id;
 	}
 }
 

@@ -55,9 +55,11 @@
 											<td style="vertical-align:middle;" ><?php echo $value['phone'] ?></td>
 											<td style="vertical-align:middle;" class="text-center"><?php echo $status ?></td>
 											<td style="vertical-align:middle;" class="text-center"><?php echo $value['lastLogin'] ?></td>
-											<td align="center" style="vertical-align:middle;" class="text-center">
-												<a href="<?php echo base_url() ?>index.php/<?php echo getModule() ?>/<?php echo getController() ?>/add/<?php echo $value['idUser'] ?>"><button type="button" class="btn btn-info "><i class="fa fa-pencil"></i> </button></a>
-												<a href="<?php echo base_url() ?>index.php/<?php echo getModule() ?>/<?php echo getController() ?>/delete/<?php echo $value['idUser'] ?>"><button type="button" class="btn btn-danger "><i class="fa fa-trash-o"></i> </button></a>
+											<td style="vertical-align:middle;" class="text-center">
+												<a href="<?php echo base_url() ?>index.php/<?php echo getModule() ?>/<?php echo getController() ?>/add/<?php echo $value['idUser'] ?>">
+													<button class="btn btn-icon waves-effect waves-light btn-primary btn-xs m-b-5" data-attr="<?= $value['idUser'] ?>"><i class="fa fa-pencil"></i></button>
+												</a>
+												<button class="btn btn-icon waves-effect waves-light btn-danger btn-xs m-b-5 delete-user" data-id="<?= $value['idUser'] ?>"><i class="fa fa-trash"></i></button>
 											</td>
 										</tr>
 										<?php 

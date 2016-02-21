@@ -77,14 +77,14 @@
                 crossOrigin: true,
                 crossDomain: true,
                 headers: {
-                 "Content-type" : "application/json"
-             },
-             type: "post",
-             url: "http://localhost/cms/setting/module/delete/"+parent,
-             data: parent,
-             success: function(data){
-             }
-         })
+                   "Content-type" : "application/json"
+               },
+               type: "post",
+               url: "http://localhost/cms/setting/module/delete/"+parent,
+               data: parent,
+               success: function(data){
+               }
+           })
             .done(function(data) {
                 swal("Canceled!", 'Modul berhasil dihapus', "success");
             })
@@ -92,6 +92,43 @@
                 swal("Oops", "We couldn't connect to the server!", "error");
             });
         });
+});
+
+$('.delete-user').click(function(){
+    var parent = $(this).data("id");
+    swal({   
+        title: "Apa anda yakin untuk menghapus modul ini?",   
+        text: "Data dan folder modul akan terhapus serta tak bisa dikembalikan",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#DD6B55",   
+        confirmButtonText: "Ya, silahkan!",   
+        cancelButtonText: "Batalkan!",   
+        closeOnConfirm: false,   
+        closeOnCancel: true,
+        showLoaderOnConfirm: true,
+        timer: 3000,
+    }, function() {
+        $.ajax(
+        {
+            crossOrigin: true,
+            crossDomain: true,
+            headers: {
+               "Content-type" : "application/json"
+           },
+           type: "post",
+           url: "http://localhost/cms/setting/user/delete/"+parent,
+           data: parent,
+           success: function(data){
+           }
+       })
+        .done(function(data) {
+            swal("Canceled!", 'Modul berhasil dihapus', "success");
+        })
+        .error(function(data) {
+            swal("Oops", "We couldn't connect to the server!", "error");
+        });
+    });
 });
 
     //Custom Image
@@ -105,13 +142,13 @@
 
     //Auto Close Timer
     $('#sa-close').click(function(){
-       swal({   
+     swal({   
         title: "Auto close alert!",   
         text: "I will close in 2 seconds.",   
         timer: 2000,   
         showConfirmButton: false 
     });
-   });
+ });
 
 
 },
